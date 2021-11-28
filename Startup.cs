@@ -1,5 +1,8 @@
+using System;
+using AlgorithmEasy.Shared.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +28,10 @@ namespace AlgorithmEasy.Server.UserCenter
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Server.UserCenter", Version = "v1" });
             });
+
+            var connection = Environment.GetEnvironmentVariable("ALGORITHMEASY_DB_CONNECTION_STRING");
+            var version = ServerVersion.AutoDetect(connection);
+            services.AddDbContext<AlgorithmEasyDbContext>(options => options.UseMySql(connection!, version));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
