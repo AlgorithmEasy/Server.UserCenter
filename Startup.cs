@@ -1,4 +1,5 @@
 using System;
+using AlgorithmEasy.Server.UserCenter.Services.Authentication;
 using AlgorithmEasy.Shared.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,8 @@ namespace AlgorithmEasy.Server.UserCenter
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Server.UserCenter", Version = "v1" });
             });
+
+            services.AddScoped<IAuthentication, Backdoor>();
 
             var connection = Environment.GetEnvironmentVariable("ALGORITHMEASY_DB_CONNECTION_STRING");
             var version = ServerVersion.AutoDetect(connection);
