@@ -1,6 +1,7 @@
 ﻿using AlgorithmEasy.Server.UserCenter.Services.Authentication;
-using AlgorithmEasy.Shared.Data;
 using AlgorithmEasy.Shared.Models;
+using AlgorithmEasy.Shared.Request;
+using AlgorithmEasy.Shared.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlgorithmEasy.Server.UserCenter.Controllers
@@ -17,7 +18,7 @@ namespace AlgorithmEasy.Server.UserCenter.Controllers
         }
 
         [HttpPost]
-        public ActionResult<RegisterResult> Register(User newUser)
+        public ActionResult<RegisterResponse> Register(User newUser)
         {
             var result = _authentication.Register(newUser);
             if (!result.IsSuccess)
@@ -29,7 +30,7 @@ namespace AlgorithmEasy.Server.UserCenter.Controllers
         }
 
         [HttpPost]
-        public ActionResult<LoginResult> Login(LoginRequest request)
+        public ActionResult<LoginResponse> Login(LoginRequest request)
         {
             var result = _authentication.Login(request.UserId, request.Password,
                 Request.HttpContext.Connection.RemoteIpAddress?.ToString());

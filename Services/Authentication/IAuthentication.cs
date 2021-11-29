@@ -1,12 +1,12 @@
-﻿using AlgorithmEasy.Shared.Data;
-using AlgorithmEasy.Shared.Models;
+﻿using AlgorithmEasy.Shared.Models;
+using AlgorithmEasy.Shared.Response;
 
 namespace AlgorithmEasy.Server.UserCenter.Services.Authentication
 {
     public interface IAuthentication
     {
-        RegisterResult Register(User newUser);
+        RegisterResponse Register(User newUser);
 
-        LoginResult Login(string userId, byte[] password, string ip);
+        LoginResponse Login(string userId, byte[] password, string ip);
     }
 }

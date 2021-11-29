@@ -1,6 +1,6 @@
 using System;
 using AlgorithmEasy.Server.UserCenter.Services.Authentication;
-using AlgorithmEasy.Shared.Data;
+using AlgorithmEasy.Shared.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

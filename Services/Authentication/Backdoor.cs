@@ -1,23 +1,23 @@
 ﻿using System;
-using AlgorithmEasy.Shared.Data;
 using AlgorithmEasy.Shared.Models;
+using AlgorithmEasy.Shared.Response;
 
 namespace AlgorithmEasy.Server.UserCenter.Services.Authentication
 {
     public class Backdoor : IAuthentication
     {
-        public RegisterResult Register(User newUser)
+        public RegisterResponse Register(User newUser)
         {
-            return new RegisterResult
+            return new RegisterResponse
             {
                 IsSuccess = true,
                 UserId = newUser.UserId
             };
         }
 
-        public LoginResult Login(string userId, byte[] password, string ip)
+        public LoginResponse Login(string userId, byte[] password, string ip)
         {
-            return new LoginResult
+            return new LoginResponse
             {
                 IsAuthenticated = true,
                 UserId = userId,
