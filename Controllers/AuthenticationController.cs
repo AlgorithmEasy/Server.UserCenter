@@ -1,7 +1,7 @@
 ﻿using AlgorithmEasy.Server.UserCenter.Services.Authentication;
 using AlgorithmEasy.Shared.Models;
-using AlgorithmEasy.Shared.Request;
-using AlgorithmEasy.Shared.Response;
+using AlgorithmEasy.Shared.Requests;
+using AlgorithmEasy.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlgorithmEasy.Server.UserCenter.Controllers

@@ -1,5 +1,5 @@
 ﻿using AlgorithmEasy.Shared.Models;
-using AlgorithmEasy.Shared.Response;
+using AlgorithmEasy.Shared.Responses;
 
 namespace AlgorithmEasy.Server.UserCenter.Services.Authentication
 {
