@@ -20,8 +20,7 @@ namespace AlgorithmEasy.Server.UserCenter.Services.Authentication
             return new LoginResponse
             {
                 IsAuthenticated = true,
-                UserId = userId,
-                SessionId = new Guid()
+                UserId = userId
             };
         }
     }
