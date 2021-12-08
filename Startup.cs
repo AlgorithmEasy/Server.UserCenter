@@ -31,7 +31,7 @@ namespace AlgorithmEasy.Server.UserCenter
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Server.UserCenter", Version = "v1" });
             });
 
-            services.AddScoped<IAuthentication, Backdoor>();
+            services.AddScoped<IAuthentication, ProductAuthentication>();
 
             var connection = Environment.GetEnvironmentVariable("ALGORITHMEASY_DB_CONNECTION_STRING");
             var version = ServerVersion.AutoDetect(connection);
