@@ -34,9 +34,9 @@ namespace AlgorithmEasy.Server.UserCenter.Controllers
         {
             var result = _authentication.Login(request.UserId, request.Password,
                 Request.HttpContext.Connection.RemoteIpAddress?.ToString());
-            if (!result.IsAuthenticated)
+            if (result == null)
             {
-                return Unauthorized(result);
+                return Unauthorized();
             }
 
             return Ok(result);
