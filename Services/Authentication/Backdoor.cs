@@ -1,26 +1,24 @@
-﻿using System;
-using AlgorithmEasy.Shared.Models;
+﻿using System.Net;
+using System.Threading.Tasks;
+using AlgorithmEasy.Server.UserCenter.Statuses;
+using AlgorithmEasy.Shared.Requests;
 using AlgorithmEasy.Shared.Responses;
 
 namespace AlgorithmEasy.Server.UserCenter.Services.Authentication
 {
     public class Backdoor : IAuthentication
     {
-        public RegisterResponse Register(User newUser)
+        public Task<RegisterStatus> Register(RegisterRequest request)
         {
-            return new RegisterResponse
-            {
-                IsSuccess = true,
-                UserId = newUser.UserId
-            };
+            return Task.FromResult(RegisterStatus.Success);
         }
 
-        public LoginResponse Login(string userId, byte[] password, string ip)
+        public Task<LoginResponse> Login(string userId, string password, IPAddress ip)
         {
-            return new LoginResponse
+            return Task.FromResult(new LoginResponse
             {
                 UserId = userId
-            };
+            });
         }
     }
 }

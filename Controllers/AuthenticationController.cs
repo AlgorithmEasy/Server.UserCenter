@@ -1,5 +1,7 @@
-﻿using AlgorithmEasy.Server.UserCenter.Services.Authentication;
-using AlgorithmEasy.Shared.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using AlgorithmEasy.Server.UserCenter.Services;
+using AlgorithmEasy.Server.UserCenter.Statuses;
 using AlgorithmEasy.Shared.Requests;
 using AlgorithmEasy.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -18,22 +20,24 @@ namespace AlgorithmEasy.Server.UserCenter.Controllers
         }
 
         [HttpPost]
-        public ActionResult<RegisterResponse> Register(User newUser)
+        public async Task<ActionResult> Register([Required][FromBody] RegisterRequest request)
         {
-            var result = _authentication.Register(newUser);
-            if (!result.IsSuccess)
+            switch (await _authentication.Register(request))
             {
-                return BadRequest(result);
+                case RegisterStatus.ConflictUserId:
+                    return BadRequest($"用户名{request.UserId}已存在。");
+                case RegisterStatus.RoleUnsupported:
+                    return BadRequest("暂不支持学生以外的用户注册。");
+                default:
+                    return Ok();
             }
-
-            return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult<LoginResponse> Login(LoginRequest request)
+        public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)
         {
-            var result = _authentication.Login(request.UserId, request.Password,
-                Request.HttpContext.Connection.RemoteIpAddress?.ToString());
+            var result = await _authentication.Login(request.UserId, request.Password,
+                Request.HttpContext.Connection.RemoteIpAddress);
             if (result == null)
             {
                 return Unauthorized();
