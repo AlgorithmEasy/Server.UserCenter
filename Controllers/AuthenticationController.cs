@@ -20,7 +20,7 @@ namespace AlgorithmEasy.Server.UserCenter.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Register([Required][FromBody] RegisterRequest request)
+        public async Task<ActionResult<string>> Register([Required][FromBody] RegisterRequest request)
         {
             switch (await _authentication.Register(request))
             {
@@ -29,7 +29,7 @@ namespace AlgorithmEasy.Server.UserCenter.Controllers
                 case RegisterStatus.RoleUnsupported:
                     return BadRequest("暂不支持学生以外的用户注册。");
                 default:
-                    return Ok();
+                    return Ok($"用户{request.Nickname}注册成功。");
             }
         }
 
