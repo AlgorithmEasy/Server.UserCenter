@@ -6,6 +6,9 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	<AssemblyName>AlgorithmEasy.Server.UserCenter</AssemblyName>
 	<RootNamespace>AlgorithmEasy.Server.UserCenter</RootNamespace>
+    <Authors>WzyAndHisFriends</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/AlgorithmEasy/Server.UserCenter</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
